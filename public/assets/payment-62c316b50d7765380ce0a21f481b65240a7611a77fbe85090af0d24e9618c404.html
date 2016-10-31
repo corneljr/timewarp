@@ -1,0 +1,82 @@
+<ion-view title="Payment" id="page3">
+    <ion-content padding="false" class="has-header">
+        <!-- <form id="payment-form" ng-submit="submitPaymentForm();">
+
+          <input type="hidden"  name="payment_method_token" id="payment_method_token">
+
+          <label for="full_name">Name</label>
+          <input type="text" id="full_name" name="full_name"><br/>
+
+          <label>Credit Card Number</label>
+          <div id="spreedly-number" style="width:225px; height:35px; border: 2px solid"></div><br/>
+
+          <label for="spreedly-exp-month">Expiration Date</label>
+          <input type="text" id="month" name="month" maxlength="2">
+          <input type="text" id="year" name="year" maxlength="4"><br/>
+
+          <label>CVV</label>
+          <div id="spreedly-cvv" style="width:60px; height:35px; border: 2px solid "></div><br/>
+
+          <input id="submit-button" type="submit" value="Pay Now">
+
+        </form> -->
+        <form class="list" name="paymentForm">
+            <div class="row">
+                <div class="col" style='padding-left:0;'>
+                    <i class="ion-card" style="position:absolute;top:30px;"></i>
+                    <label class="item item-input">
+                        <input type="text" placeholder="Credit Card #" ng-model="cardData.cardNumber" required="">
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-60">
+                    <label class="item item-input">
+                        <input type="text" placeholder="MM/YY" ng-model="cardData.expiry" required="">
+                    </label>
+                </div>
+                <div class="col-40">
+                    <label class="item item-input">
+                        <input type="text" placeholder="CVV" ng-model="cardData.cvv" required="">
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col" style='padding-left:0;'>
+                    <label class="item item-select">
+                        <span class="input-label"></span>
+                        <select ng-model="cardData.country" ng-options="country.id as country.label for country in countries" required=""></select>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col" style='padding-left:0;'>
+                    <label class="item item-input">
+                        <input type="text" placeholder="Billing ZIP/Postal Code" ng-model="cardData.zipCode" required="">
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col" style='padding-left:0;'>
+                    <label class="item item-input">
+                        <input type="text" placeholder="Cardholder Name" ng-model="cardData.name" required="">
+                    </label>
+                </div>
+            </div>
+        </form>
+    </ion-content>
+    <button id="payment-button3" ng-click="review()" ng-disabled="cardData.name == 0 || cardData.zipCode == 0 || cardData.cvv == 0 || cardData.expiry == 0 || cardData.cardNumber == 0" style="border-radius:0px 0px 0px 0px;" class="button button-positive button-block fixed-to-bottom">Review Fare &amp; Purchase </button>
+</ion-view>
+
+<script type="text/javascript">
+
+    // function submitPaymentForm() {
+    //     var requiredFields = {}
+
+    //     requiredFields["full_name"] = document.getElementById("full_name").value;
+    //     requiredFields["month"] = document.getElementById("month").value;
+    //     requiredFields["year"] = document.getElementById("year").value;
+
+    //     Spreedly.tokenizeCreditCard(requiredFields);
+    // }
+</script>

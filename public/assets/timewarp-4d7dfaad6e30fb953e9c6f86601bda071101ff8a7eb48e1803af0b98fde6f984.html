@@ -1,0 +1,69 @@
+<ion-view title='TimeWarp!' id="page1" style="background-color:#FFFFFF;">
+    <ion-content padding="false" class="has-header">
+        <div>
+            <div class="info-container" style='padding-top:10px;padding-bottom:10px;'>
+                <h4>{{flightDetails.origin}} - {{flightDetails.destination}}</h4>
+                <p>{{flightDetails.departureDate | date:'EEE MMM d, yyyy'}} to {{flightDetails.returnDate | date:'EEE MMM d, yyyy'}}</p>
+                <p class='bold'>Roundtrip</p>
+            </div>
+        </div>
+        <ion-list id="timewarp-list2">
+            <ion-item ng-repeat="tier in tiers" style='padding:0px' ng-if="flightDetails[tier.type]['airlines'].length > 1">
+                <div class='{{tier.type}}_background_image tier_info_container'>
+                    <div class='tier_text row'>
+                        <div class='col-60'>
+                            <h2 style='white-space:normal;'>{{tier.title}}</h2>
+                            <h4 style='white-space:normal;'>{{tier.description}}</h4>
+                            <h4 class="discount">
+                                <strike style='color:red;'>{{flightDetails[tier.type]['currentPrice'] | currency:"$":0}}</strike>&nbsp;Save {{flightDetails[tier.type]['currentPrice'] - flightDetails[tier.type]['tierPrice'] | currency:"$":0}}</h4>
+                        </div>
+                        <div class='col-40 col-center' style='position:absolute;right:10px;'>
+                            <button ng-click="flightBreakdown(&quot;{{tier.type}}&quot;)" class="button button-positive" style='padding:0px 25px;'>{{flightDetails[tier.type]['tierPrice'] | currency:"$":0}}</button>
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class='row'>
+                    <div class='col'>
+                        <p style='text-align:center;font-size:16px'><a ng-click='openModal()'>How does this work?</a></p>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+        <div>
+            <script id="howItWorks.html" type="text/ng-template">
+                <ion-modal-view>
+                    <ion-header-bar>
+                        <i style='font-size:20px;padding:5px;' ng-click="modal.hide()" class='ion-close'></i>
+                    </ion-header-bar>
+                    <ion-content>
+                        <ion-slide-box on-slide-changed="slideChanged(index)">
+                            <ion-slide>
+                                <img src="/assets/TimeTravelDark-22305a87cd8bef610596313d6d34c507cc1fb2ea7160c3041da85312c2fd620e.jpg" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+                                <div class='warp-info align-center'>
+                                    <h3>No more waiting for prices to drop!</h3><br>
+                                    <p>We're confident in our predictions. Buy your flights now at the low price. You won't find these prices anywhere else!</p>
+                                </div>
+                            </ion-slide>
+                            <ion-slide>
+                                <img src="/assets/BunnyTrip-9b131b8007b36dd6be5eaae53fbc3e34d10fb9b56f384e98837345de6b3cb9bd.jpg" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+                                <div class='warp-info align-center'>
+                                    <h3>Pack your bags.</h3><br>
+                                    <p>We will finalize your flight and send over full travel details at least one month before departure. But don't worry, your price and travel dates are 100% guaranteed and your flight is fully refundable!</p><br>
+                                </div>
+                            </ion-slide>
+                            <ion-slide>
+                                <img src="/assets/TravelAgency-3407deb9a7179cddcb1dbeeb8c34759df1af762f603b32d7238c88b1d38380b7.jpg" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+                                <div class='warp-info align-center'>
+                                    <h3>We're here to help.</h3><br>
+                                    <p>Feel free to reach out to us with any questions. Email our TimeWarp specialist at josh@hopper.com.</p><br>
+                                </div>
+                            </ion-slide>
+                        </ion-slide-box>
+                    </ion-content>
+                  </ion-modal-view>
+            </script>
+        </div>
+    </ion-content>
+</ion-view>

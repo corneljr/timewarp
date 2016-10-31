@@ -1,0 +1,100 @@
+<ion-view title="{{flightDetails.origin}} - {{flightDetails.destination}}" id="page5">
+    <ion-content padding="false" class="has-header">
+        <div>
+            <ion-list>
+                <ion-item class="info-container">
+                    <div class="row">
+                        <div class='col'>
+                            <h2 style="white-space:normal;font-weight:normal;padding-bottom:5px;">You will be booked on one of these outbound and return flights. Your trip will be finalized at least a month before departure and is fully refundable until this date.</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>{{tripDetails.departureDate | date:'MMM d, yyyy'}} - {{tripDetails.returnDate | date:'MMM d, yyyy'}}</p>
+                        </div>
+                        <div class="col align-right">
+                            <p>
+                                <a ng-click="modal.show()" style="color:#4990e1;">How does this work?</a>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+                <div ng-repeat="leg in ['outbound','return']">
+                    <div class="info-container">
+                        <h4 style='margin-left:10px;margin-top:5px;margin-bottom:5px;'>{{leg}}</h4>
+                    </div>
+                    <ion-item ng-repeat="flight in flightList[leg]">
+                        <div class="row">
+                            <div class="col">
+                                <p>{{flight.airline}}</p>
+                            </div>
+                            <div class="col">
+                                <p class="align-right" style="color:black;">{{flight.departureTime}} - {{flight.arrivalTime}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p class="align-right">{{flight.duration}}, <ng-pluralize count="flight.stops" when="{'1': '1 stop','other':'{} stops'}"></ng-pluralize></p>
+                            </div>
+                        </div>
+                    </ion-item>
+                </div>
+            </ion-list>
+        </div>
+        <div style='height:127px;'></div>
+    </ion-content>
+    <div class='fixed-to-bottom'>
+        <div class="info-container">
+            <div class="row" style='padding-bottom:0;'>
+                <div class="col">
+                    <p>Roundtrip, Per Person</p>
+                </div>
+                <div class="col">
+                    <h4 class="align-right">{{flightList.tierPrice | currency:"$":0}}</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="discount align-right">
+                        <strike>{{flightList.currentPrice | currency:"$":0}}</strike>&nbsp;Save {{flightList.currentPrice - flightList.tierPrice | currency:"$":0}}</p>
+                </div>
+            </div>
+        </div>
+        <button ng-click="bookNow()" style="border-radius:0px 0px 0px 0px;" class="button button-positive button-block">Book Now</button>
+    </div>
+    <script id="howItWorks.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar>
+                <i style='font-size:20px;padding:5px;' ng-click="modal.hide()" class='ion-close'></i>
+            </ion-header-bar>
+                <ion-content>
+                    <ion-slide-box on-slide-changed="slideChanged(index)">
+                        <ion-slide>
+                            <img src="/assets/TimeTravelDark.jpg" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+                            <div class='warp-info align-center'>
+                                <h3>No more waiting for prices to drop!</h3><br>
+                                <p>Let us do the work for you. Buy your flights now at Hopper's predicted future price and we'll complete the booking when the price drops.</p><br>
+                                <p>You won't find these prices anywhere else!</p>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <img src="/assets/BunnyTrip.jpg" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+                            <div class='warp-info align-center'>
+                                <h3>Pack your bags.</h3><br>
+                                <p>We will finalize your flight at least 2 weeks before departure. But don't worry, your price and flight is fully guarenteed.</p><br>
+                                <p>It's also fully changeable and refundable until booking!</p>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <img src="/assets/TravelAgency.jpg" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+                            <div class='warp-info align-center'>
+                                <h3>We're here to help.</h3><br>
+                                <p>Does this sound too good to be true? Well we agree, but it is true! If you have any questions don't hesitate to reach out to us.</p><br>
+                                <p>Email our timewarp specialist at josh@hopper.com.</p>
+                            </div>
+                        </ion-slide>
+                    </ion-slide-box>
+                </ion-content>
+          </ion-modal-view>
+    </script>
+</ion-view>

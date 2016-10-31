@@ -1,0 +1,135 @@
+<ion-view title="Flight Details" id="page5">
+    <ion-content padding="false" class="has-header">
+        <div class='{{flightType}}_background_image tier_header'>
+            <h3>{{tierDetails['title']}}</h3>
+            <h5>{{tierDetails['description']}}</h5>
+        </div>
+
+        <ion-list class='flight_detail_list'>
+            <ion-item>
+                <div class='row'>
+                    <div class='col'>
+                        <p>Departure Date</p>
+                    </div>
+                    <div class='col'>
+                        <p class='align-right'>Return Date</p>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col'>
+                        <p class='black'>{{tripDetails.departureDate | date:'EEE MMM d, yyyy'}} <span ng-if='flightType == "whatever"'>+/- 3 days</span></p>
+                    </div>
+                    <div class='col'>
+                        <p class='align-right black'>{{tripDetails.returnDate | date:'EEE MMM d, yyyy'}} <span ng-if='flightType == "whatever"'>+/- 3 days</span></p>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class='row'>
+                    <div class='col'>
+                        <p>Price</p>
+                    </div>
+                    <div class='col'>
+                        <p class='align-right black bold'>{{flightDetails[flightType]['tierPrice'] | currency:"$":0}} Roundtrip</p>
+                        <p class='align-right black'><strike style='color:red;'>{{flightDetails[flightType]['currentPrice'] | currency:"$":0}}</strike>&nbsp;Save {{flightDetails[flightType]['currentPrice'] - flightDetails[flightType]['tierPrice'] | currency:"$":0}}</p>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class='row'>
+                    <div class='col'>
+                        <p>Number of Stops</p>
+                    </div>
+                    <div class='col'>
+                        <p class='align-right black'>{{tierDetails['stops']}}</p>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class='row'>
+                    <div class='col'>
+                        <p>Departure Time</p>
+                    </div>
+                    <div class='col'>
+                        <p class='align-right black'>{{tierDetails['timeframe']}}</p>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class='row'>
+                    <div class='col'>
+                        <p>Max Travel Time</p>
+                    </div>
+                    <div class='col'>
+                        <p class='align-right black'>{{maxDurationString}}</p>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class='row'>
+                    <div class='col'>
+                        <p>One of these Airlines</p>
+                    </div>
+                    <div class='col'>
+                        <p class='align-right black'>{{flightDetails[flightType]['airlines'].join(', ')}}</p>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class='row'>
+                    <div class='col'>
+                        <p>Details</p>
+                    </div>
+                    <div class='col'>
+                        <p class='align-right black'>
+                            You will receive your ticket at least a month before departure. It is 100% guaranteed and your ticket is fully refundable. <span ng-if="flightType == 'whatever'">Your flight will depart +/- 3 days of the above dates and the trip length will remain the same.</span>
+                        </p>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class='row'>
+                    <div class='col'>
+                        <p style='text-align:center;'><a ng-click='openModal()'>View List of Potential Flights</a></p>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+        <div style='height:50px;'></div>
+    </ion-content>
+    <button ng-click="bookNow()" style="border-radius:0px 0px 0px 0px;" class="button button-positive button-block fixed-to-bottom">Book your Trip</button>
+    <script id="howItWorks.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar>
+                <i style='font-size:20px;padding:5px;' ng-click="modal.hide()" class='ion-close'></i>
+            </ion-header-bar>
+                <ion-content>
+                    <ion-list>
+                    <div ng-repeat="leg in ['outbound','return']">
+                        <div class="info-container">
+                            <h4 style='margin-left:10px;margin-top:5px;margin-bottom:5px;'>{{leg}}</h4>
+                        </div>
+                        <ion-item ng-repeat="flight in flightList[leg]">
+                            <div class="row">
+                                <div class='col-10 col-center'>
+                                    <img height='25' width='auto' src={{flight.airline_image_url}}>
+                                </div>
+                                <div class="col col-center">
+                                    <p class='align-left' style='display:inline;'>{{flight.airline}}</p>
+                                </div>
+                                <div class="col col-center">
+                                    <p class="align-right" style="color:black;">{{flight.departureTime}} - {{flight.arrivalTime}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="align-right">{{flight.duration}}, <ng-pluralize count="flight.stops" when="{'1': '1 stop','other':'{} stops'}"></ng-pluralize></p>
+                                </div>
+                            </div>
+                        </ion-item>
+                    </div>
+                    </ion-list>
+                </ion-content>
+          </ion-modal-view>
+    </script>
+</ion-view>

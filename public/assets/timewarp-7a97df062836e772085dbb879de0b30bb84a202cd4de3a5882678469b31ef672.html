@@ -1,0 +1,163 @@
+<ion-view title="{{tripDetails.origin}} - {{tripDetails.destination}}" id="page1" style="background-color:#FFFFFF;">
+    <ion-content padding="false" class="has-header">
+        <div>
+            <div class="timewarp-image">
+                <img src="/assets/TimeTravelDark-22305a87cd8bef610596313d6d34c507cc1fb2ea7160c3041da85312c2fd620e.jpg">
+                <div class="timewarp-info">
+                    <h4>Timewarp! Save $105 per ticket</h4>
+                    <p>You can book these future fares immediately and lock in the low price.</p>
+                    <p>
+                        <a style='color:white;' ng-click="modal.show()">How does this work?</a>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <div>
+            <div class="info-container">
+                <h4 style='margin-bottom:5px;margin-top:5px;'>Choose your flight type</h4>
+                <p style='font-size:14px;color:#666;margin-bottom:5px;'>The more flexible you can be, the cheaper your flight.</p>
+            </div>
+        </div>
+        <ion-list id="timewarp-list2">
+            <div>
+                <ion-item ng-click="flightDetails(&quot;morning&quot;)">
+                    <div class="row">
+                        <div class="col align-left">
+                            <p class="discount">
+                                <strike>{{morningFlights.originalPrice | currency:"$":0}}</strike>&nbsp;Save {{morningFlights.originalPrice - morningFlights.price | currency:"$":0}}</p>
+                        </div>
+                        <div class="col align-right">
+                            <p class="price">{{morningFlights.price | currency:"$":0}} RT</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col type-info-container">
+                            <h2>One Stop Flights Leaving in the Morning</h2>
+                            <p style="white-space:normal">You will be booked on a flight Departing between 5:00am and 12:00pm. One stop or less. No red eyes.</p>
+                            <br>
+                            <h4>{{arrayToString(morningFlights.airlines)}}</h4>
+                        </div>
+                    </div>
+                </ion-item>
+
+                <ion-item ng-click="flightDetails(&quot;afternoon&quot;)">
+                    <div class="row">
+                        <div class="col align-left">
+                            <p class="discount">
+                                <strike>{{afternoonFlights.originalPrice | currency:"$":0}}</strike>&nbsp;Save {{afternoonFlights.originalPrice - afternoonFlights.price | currency:"$":0}}</p>
+                        </div>
+                        <div class="col align-right">
+                            <p class="price">{{afternoonFlights.price | currency:"$":0}} RT</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col type-info-container">
+                            <h2 style='white-space:normal;'>One Stop Flights Leaving in the Afternoon or Evening</h2>
+                            <p style="white-space:normal">You will be booked on a flight Departing between 12:00pm and 10:00pm. One stop or less. No red eyes.</p>
+                            <br>
+                            <h4>{{arrayToString(afternoonFlights.airlines)}}</h4>
+                        </div>
+                    </div>
+                </ion-item>
+
+                <ion-item ng-click="flightDetails(&quot;anytime&quot;)">
+                    <div class="row">
+                        <div class="col align-left">
+                            <p class="discount">
+                                <strike>{{anytimeFlights.originalPrice | currency:"$":0}}</strike>&nbsp;Save {{anytimeFlights.originalPrice - anytimeFlights.price | currency:"$":0}}</p>
+                        </div>
+                        <div class="col align-right">
+                            <p class="price">{{anytimeFlights.price | currency:"$":0}} RT</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col type-info-container">
+                            <h2>One Stop Flights Leaving at Anytime</h2>
+                            <p style="white-space:normal">You will be booked on a flight Departing anytime during the day. One stop or less. No red eyes.</p>
+                            <br>
+                            <h4>{{arrayToString(anytimeFlights.airlines)}}</h4>
+                        </div>
+                    </div>
+                </ion-item>
+
+                <ion-item ng-click="flightDetails(&quot;anytype&quot;)">
+                    <div class="row">
+                        <div class="col align-left">
+                            <p class="discount">
+                                <strike>{{anytypeFlights.originalPrice | currency:"$":0}}</strike>&nbsp;Save {{anytypeFlights.originalPrice - anytypeFlights.price | currency:"$":0}}</p>
+                        </div>
+                        <div class="col align-right">
+                            <p class="price">{{anytypeFlights.price | currency:"$":0}} RT</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col type-info-container">
+                            <h2>Anything on My Dates</h2>
+                            <p style="white-space:normal">You will be booked on a flight Departing anytime. Two stops or less, with the possibility of red-eyes.</p>
+                            <br>
+                            <h4>{{arrayToString(anytypeFlights.airlines)}}</h4>
+                        </div>
+                    </div>
+                </ion-item>
+
+                <ion-item ng-click="flightDetails(&quot;whatever&quot;)">
+                    <div class="row">
+                        <div class="col align-left">
+                            <p class="discount">
+                                <strike>{{whateverFlights.originalPrice | currency:"$":0}}</strike>&nbsp;Save {{whateverFlights.originalPrice - whateverFlights.price | currency:"$":0}}</p>
+                        </div>
+                        <div class="col align-right">
+                            <p class="price">{{whateverFlights.price | currency:"$":0}} RT</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col type-info-container">
+                            <h2>Anything Goes</h2>
+                            <p style="white-space:normal">You will be booked on a flight Departing between December 9th and December 15th. Includes direct flights, flights with stops, and some red-eyes and overnight flights.</p>
+                            <br>
+                            <h4>{{arrayToString(whateverFlights.airlines)}}</h4>
+                        </div>
+                    </div>
+                </ion-item>
+            </div>
+        </ion-list>
+        <div>
+            <script id="howItWorks.html" type="text/ng-template">
+                <ion-modal-view>
+                    <ion-header-bar>
+                        <i style='font-size:20px;padding:5px;' ng-click="modal.hide()" class='ion-close'></i>
+                    </ion-header-bar>
+                    <ion-content>
+                        <ion-slide-box on-slide-changed="slideChanged(index)">
+                            <ion-slide>
+                                <img src="/assets/TimeTravelDark-22305a87cd8bef610596313d6d34c507cc1fb2ea7160c3041da85312c2fd620e.jpg" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+                                <div class='warp-info align-center'>
+                                    <h3>No more waiting for prices to drop!</h3><br>
+                                    <p>The bunny has travelled into the future and brought back low fares into the present.</p><br>
+                                    <p>You won't find these prices on any other website!</p>
+                                </div>
+                            </ion-slide>
+                            <ion-slide>
+                                <img src="/assets/TravelAgency-3407deb9a7179cddcb1dbeeb8c34759df1af762f603b32d7238c88b1d38380b7.jpg" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+                                <div class='warp-info align-center'>
+                                    <h3>Book the future today.</h3><br>
+                                    <p>You can book these future fares immediately and lock in the low price.</p><br>
+                                    <p>But hurry, the Timewarp doesn't stay open for very long.</p>
+                                </div>
+                            </ion-slide>
+                            <ion-slide>
+                                <img src="/assets/BunnyTrip-9b131b8007b36dd6be5eaae53fbc3e34d10fb9b56f384e98837345de6b3cb9bd.jpg" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+                                <div class='warp-info align-center'>
+                                    <h3>Pack your bags.</h3><br>
+                                    <p>We will book you at leavest 2 weeks before departure. Your price is guarenteed at no extra charge.</p><br>
+                                    <p>And your ticket is refundable!</p>
+                                </div>
+                            </ion-slide>
+                        </ion-slide-box>
+                    </ion-content>
+                  </ion-modal-view>
+            </script>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,59 @@
+<ion-view title="Review Fare &amp; Purchase" id="page4">
+    <ion-content padding="false" class="has-header" style='background-color:#fafafa;'>
+        <div class="info-container" style="background-color:white;">
+            <div class="row content-padding">
+                <div class="col-20 col-center">
+                    <i class="ion-card" style="font-size:40px"></i>
+                </div>
+                <div class="col-80">
+                    <p style="color:#3097f3">{{card}}</p>
+                    <p>MasterCard</p>
+                </div>
+            </div>
+        </div>
+        <div class='info-container' style='padding:15px;'>
+            <h4>{{flightDetails.origin}} to {{flightDetails.destination}}</h4>
+            <p>{{tripType['description']}}</p>
+            <p>{{tripDetails.departureDate | date:'MMM d, yyyy'}} - {{tripDetails.returnDate | date:'MMM d, yyyy'}}</p>
+        </div>
+        <div class="row content-padding" ng-repeat="traveller in savedTravellers">
+            <div class="col">
+                <p>{{traveller.firstName}} {{traveller.lastName}}</p>
+            </div>
+            <div class="col align-right">
+                <p>{{flightList.tierPrice | currency:"$":0 }}</p>
+            </div>
+        </div>
+        <div class="row content-padding">
+            <div class="col">
+                <h4>Total</h4>
+            </div>
+            <div class="col align-right">
+                <h4>{{totalCost | currency:"$":0}}</h4>
+            </div>
+        </div>
+        <br><br>
+        <div class='row'>
+            <div class='col'>
+                <p style='text-align:center;'><a href='' style='color:#3097f3'>Fare Rules &amp; Legal Stuff</a></p>
+            </div>
+        </div>
+    </ion-content>
+    <button id="reviewFarePurchase-button5" ng-click="confirmation()" style="border-radius:0px 0px 0px 0px;" class="button button-positive button-block fixed-to-bottom">Pay Securely Now</button>
+
+    <script id="confirmation.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-content>
+                <div class='confirmation-container'>
+                    <div class='confirmation-content'>
+                        <h2>Pack your bags!</h2>
+                        <h4>A confirmation email will be sent shortly to victor@hopper.com</h4>
+                        <br>
+                        <i class='icon ion-checkmark-circled'></i>
+                    </div>
+                </div>
+            </ion-content>
+          </ion-modal-view>
+    </script>
+</ion-view>
+

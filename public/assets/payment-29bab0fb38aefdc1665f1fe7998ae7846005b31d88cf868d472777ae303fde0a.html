@@ -1,0 +1,55 @@
+<ion-view title="{{flightDetails.origin}} - {{flightDetails.destination}}" id="page3">
+    <ion-content padding="false" class="has-header">
+        <div class='info-container' ng-if="cardError">
+            <p style='color:red;'>There was an error with your card. Please make sure all of your information is correct.</p>
+        </div>
+        <div class='info-container'>
+            <p>Your Timewarp ticket is fully refundable up until 24 hours after official ticketing.</p>
+        </div>
+        <form class="list" name="paymentForm">
+            <div class="row">
+                <div class="col" style='padding-left:0;'>
+                    <i class="ion-card" style="position:absolute;top:30px;"></i>
+                    <label class="item item-input">
+                        <input type="text" placeholder="Credit Card #" ng-model="cardData.cardNumber" required="">
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-60">
+                    <label class="item item-input">
+                        <input type="text" placeholder="MM/YYYY" ng-model="cardData.expiry" required="">
+                    </label>
+                </div>
+                <div class="col-40">
+                    <label class="item item-input">
+                        <input type="text" placeholder="CVC" ng-model="cardData.cvc" required="">
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col" style='padding-left:0;'>
+                    <label class="item item-select">
+                        <span class="input-label"></span>
+                        <select ng-model="cardData.country" ng-options="country.id as country.label for country in countries" required=""></select>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col" style='padding-left:0;'>
+                    <label class="item item-input">
+                        <input type="text" placeholder="Billing ZIP/Postal Code" ng-model="cardData.zipCode" required="">
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col" style='padding-left:0;'>
+                    <label class="item item-input">
+                        <input type="text" placeholder="Cardholder Name" ng-model="cardData.name" required="">
+                    </label>
+                </div>
+            </div>
+        </form>
+    </ion-content>
+    <button id="payment-button3" ng-click="submitPaymentForm()" ng-disabled="cardData.name == 0 || cardData.zipCode == 0 || cardData.cvv == 0 || cardData.expiry == 0 || cardData.cardNumber == 0" style="border-radius:0px 0px 0px 0px;" class="button button-positive button-block fixed-to-bottom">Review Fare &amp; Purchase </button>
+</ion-view>

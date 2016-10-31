@@ -1,0 +1,89 @@
+<ion-view hide-nav-bar="true" title="{{flightDetails.origin}} - {{flightDetails.destination}}" id="page1" style="background-color:#FFFFFF;">
+    <div style='background-color:#ff6d64;position:absolute;top:0;bottom:0;left:0;right:0;z-index:10000;' ng-if='dataLoaded'>
+        <img src="{{bunnyUrl}}" width="100px" height="auto" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)"/>
+    </div>
+    <span id='image-data' data-image-1="/assets/running-bunny-white-1.pdf" data-image-2="/assets/running-bunny-white-2.pdf" data-image-3="/assets/running-bunny-white-3.pdf" data-image-4="/assets/running-bunny-white-4.pdf" data-image-5="/assets/running-bunny-white-5.pdf" data-image-6="/assets/running-bunny-white-6.pdf" data-image-7="/assets/running-bunny-white-7.pdf" data-image-8="/assets/running-bunny-white-8.pdf" data-image-9="/assets/running-bunny-white-9.pdf" data-image-10="/assets/running-bunny-white-10.pdf" data-image-11="/assets/running-bunny-white-11.pdf" data-image-12="/assets/running-bunny-white-12.pdf" data-image-13="/assets/running-bunny-white-13.pdf"></span>
+    <ion-content padding="false" class="has-header">
+        <div>
+            <div class="timewarp-image">
+                <img src="/assets/TimeTravelDark.jpg">
+                <div class="timewarp-info">
+                    <h4>Timewarp! Save up to {{flightDetails['whatever']['currentPrice'] - flightDetails['whatever']['tierPrice'] | currency:"$":0}} per ticket!</h4>
+                    <p>Reserve your trip today, at the low prices of the future. Fully guaranteed and refundable.</p>
+                    <p>
+                        <a style='color:white;' ng-click="modal.show()">How does this work?</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="info-container">
+                <h4 style='margin-bottom:5px;margin-top:5px;'>Choose your flight type</h4>
+                <p style='font-size:14px;color:#666;margin-bottom:5px;'>The more flexible you can be, the cheaper your flights.</p>
+            </div>
+        </div>
+        <ion-list id="timewarp-list2">
+            <div>
+                <ion-item ng-click="flightBreakdown(&quot;{{tier.type}}&quot;)" ng-repeat="tier in tiers">
+                    <div class="row">
+                        <div class="col align-left">
+                            <p class="discount">
+                                <strike>{{flightDetails[tier.type]['currentPrice'] | currency:"$":0}}</strike>&nbsp;Save {{flightDetails[tier.type]['currentPrice'] - flightDetails[tier.type]['tierPrice'] | currency:"$":0}}</p>
+                        </div>
+                        <div class="col align-right">
+                            <p class="price">{{flightDetails[tier.type]['tierPrice'] | currency:"$":0}} RT</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col type-info-container">
+                            <h2>{{tier.title}}</h2>
+                            <p style="white-space:normal">{{tier.description}}</p>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col' ng-repeat="airline in flightDetails[tier.type]['airlines']">
+                            <img height='30' width='auto' src='/assets/{{airline}}_icon.png'>
+                        </div>
+                    </div>
+                </ion-item>              
+            </div>
+        </ion-list>
+        <div>
+            <script id="howItWorks.html" type="text/ng-template">
+                <ion-modal-view>
+                    <ion-header-bar>
+                        <i style='font-size:20px;padding:5px;' ng-click="modal.hide()" class='ion-close'></i>
+                    </ion-header-bar>
+                    <ion-content>
+                        <ion-slide-box on-slide-changed="slideChanged(index)">
+                            <ion-slide>
+                                <img src="/assets/TimeTravelDark.jpg" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+                                <div class='warp-info align-center'>
+                                    <h3>No more waiting for prices to drop!</h3><br>
+                                    <p>Let us do the work for you. Buy your flights now at Hopper's predicted future price and we'll complete the booking when the price drops.</p><br>
+                                    <p>You won't find these prices anywhere else!</p>
+                                </div>
+                            </ion-slide>
+                            <ion-slide>
+                                <img src="/assets/BunnyTrip.jpg" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+                                <div class='warp-info align-center'>
+                                    <h3>Pack your bags.</h3><br>
+                                    <p>We will finalize your flight at least 2 weeks before departure. But don't worry, your price and flight is fully guarenteed.</p><br>
+                                    <p>It's also fully changeable and refundable until booking!</p>
+                                </div>
+                            </ion-slide>
+                            <ion-slide>
+                                <img src="/assets/TravelAgency.jpg" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+                                <div class='warp-info align-center'>
+                                    <h3>We're here to help.</h3><br>
+                                    <p>Does this sound too good to be true? Well we agree, but it is true! If you have any questions don't hesitate to reach out to us.</p><br>
+                                    <p>Email our timewarp specialist at josh@hopper.com.</p>
+                                </div>
+                            </ion-slide>
+                        </ion-slide-box>
+                    </ion-content>
+                  </ion-modal-view>
+            </script>
+        </div>
+    </ion-content>
+</ion-view>

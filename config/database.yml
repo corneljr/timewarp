@@ -1,0 +1,9 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: darkpool_development
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: darkpool_production
