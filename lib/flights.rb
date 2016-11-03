@@ -95,6 +95,10 @@ module Flights
 				flight_info['segmentArrivalDay'] = DateTime.strptime(arrival_epoch_seconds.to_s,"%s").strftime("%b %-d")
 				flight_info['segmentArrivalTime'] = DateTime.strptime(arrival_epoch_seconds.to_s,"%s").strftime("%-l:%M%P")
 
+				duration = segment["duration"].to_i
+				segment_duration_string = "#{duration / 60}h #{duration % 60}m"
+				flight_info['segmentDuration'] = segment_duration_string
+
 				if leg == 'outbound'
 					outbound_ids = outbound_ids + segment['carrier_code'] + segment['flight_number'] 
 					outbound_details['outbound_ids'] = outbound_ids

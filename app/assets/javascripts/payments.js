@@ -9,11 +9,11 @@ angular.module('payment', [])
     	})
     }
 
-    this.chargeCard = function(token,amount, travellers, origin, destination, departure_date, return_date, tier) {
+    this.chargeCard = function(token,amount, travellers, origin, destination, departure_date, return_date, outbound_flights, return_flights) {
     	return $http({
     		url:'/api/charge_card',
     		method: "POST",
-    		data: {'token': token, 'amount':amount, 'travellers': travellers, 'origin': origin, 'destination': destination, 'departure_date': departure_date, 'return_date':return_date, 'tier': tier, 'amount':amount}
+    		data: {'token': token, 'amount':amount, 'travellers': travellers, 'origin': origin, 'destination': destination, 'departure_date': departure_date, 'return_date':return_date, 'outbound_flights':outbound_flights,'return_flights':return_flights}
     	})
     }
 
