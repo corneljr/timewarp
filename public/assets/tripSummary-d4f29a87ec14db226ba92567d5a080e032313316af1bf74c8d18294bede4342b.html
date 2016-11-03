@@ -1,0 +1,102 @@
+<ion-view title='TimeWarp!' style="background-color:#f6f6f6;">
+    <ion-content padding="false" class="has-header">
+        <div class='flight-card'>
+            <h3>Outbound <span class='normal-weight'>to {{flightDetails.destination}}</span></h3>
+            <p>{{tripDetails.departureDate | date:'EEE MMM d, yyyy'}}</p>
+            <div class='trip-slice' ng-repeat="flight in tripDetails['outbound']['flights']">
+                <hr class='seperator'>
+                <div class='row'>
+                    <div class='col-5'>
+                        <img src="{{tripDetails['outbound']['airlineImageUrl']}}" height='25' width='auto' style='padding-left:5px;'>
+                    </div>
+                    <div class='col'>
+                        <p>{{tripDetails['outbound']['airline']}} - {{flight['id']}}</p>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col'>
+                        <p class='no-margin'>{{flight['segmentOriginString']}}</p>
+                    </div>
+                    <div class='col align-right'>
+                        <p class='no-margin'>{{flight['segmentDestinationString']}}</p>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col col-center'>
+                        <h3 class='no-margin'>{{flight['segmentOrigin']}}</h3>
+                    </div>
+                    <div class='col col-center'>
+                        <img src="/assets/nonstop_graphic-47c04a62a90b076b4f4ce936f3bad5cc3c9eb3da43a431b47881310a8b835e6e.png" height='25' width='auto'>
+                    </div>
+                    <div class='col col-center align-right'>
+                        <h3 class='no-margin'>{{flight['segmentDestination']}}</h3>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col'>
+                        <p>{{flight['segmentDepartureTime']}}</p>
+                    </div>
+                    <div class='col align-center'>
+                        <p>{{flight['segmentDuration']}}</p>
+                    </div>
+                    <div class='col align-right'>
+                        <p>{{flight['segmentArrivalTime']}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='flight-card'>
+            <h3>Return <span class='normal-weight'>to {{flightDetails.origin}}</span></h3>
+            <p>{{tripDetails.returnDate | date:'EEE MMM d, yyyy'}}</p>
+            <div class='trip-slice' ng-repeat="flight in tripDetails['return']['flights']">
+                <hr class='seperator'>
+                <div class='row'>
+                    <div class='col-5'>
+                        <img src="{{tripDetails['return']['airlineImageUrl']}}" height='25' width='auto' style='padding-left:5px;'>
+                    </div>
+                    <div class='col'>
+                        <p>{{tripDetails['return']['airline']}} - {{flight['id']}}</p>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col'>
+                        <p class='no-margin'>{{flight['segmentOriginString']}}</p>
+                    </div>
+                    <div class='col align-right'>
+                        <p class='no-margin'>{{flight['segmentDestinationString']}}</p>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col col-center'>
+                        <h3 class='no-margin'>{{flight['segmentOrigin']}}</h3>
+                    </div>
+                    <div class='col col-center'>
+                        <img src="/assets/nonstop_graphic-47c04a62a90b076b4f4ce936f3bad5cc3c9eb3da43a431b47881310a8b835e6e.png" height='25' width='auto' style='padding-left:5px;'>
+                    </div>
+                    <div class='col col-center align-right'>
+                        <h3 class='no-margin'>{{flight['segmentDestination']}}</h3>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col'>
+                        <p>{{flight['segmentDepartureTime']}}</p>
+                    </div>
+                    <div class='col align-center'>
+                        <p>{{flight['segmentDuration']}}</p>
+                    </div>
+                    <div class='col align-right'>
+                        <p>{{flight['segmentArrivalTime']}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div style="height:100px;"></div>
+    </ion-content>
+    <div class='fixed-to-bottom' style='background-color:#fff;border-top: 1px solid #dfdfdf;'>
+        <div class='row'>
+            <div class='col'><p>Roundtrip, Per Person</p></div>
+            <div class='col align-right bold'><p>{{tripDetails['price'] | currency:"$":0}}</p></div>
+        </div>
+        <button class='button button-positive button-block no-radius' ng-click='addTravellers()'>Choose Travelers</button>
+    </div>
+</ion-view>

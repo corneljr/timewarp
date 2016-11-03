@@ -5,15 +5,13 @@
                 <div class="col-20 col-center">
                     <i class="ion-card" style="font-size:40px"></i>
                 </div>
-                <div class="col-80">
+                <div class="col-80 col-center">
                     <p style="color:#3097f3">{{card}}</p>
-                    <p>MasterCard</p>
                 </div>
             </div>
         </div>
         <div class='info-container' style='padding:15px;'>
             <h4>{{flightDetails.origin}} to {{flightDetails.destination}}</h4>
-            <p>{{tripType['description']}}</p>
             <p>{{tripDetails.departureDate | date:'MMM d, yyyy'}} - {{tripDetails.returnDate | date:'MMM d, yyyy'}}</p>
         </div>
         <div class="row content-padding" ng-repeat="traveller in savedTravellers">
@@ -21,7 +19,7 @@
                 <p>{{traveller.firstName}} {{traveller.lastName}}</p>
             </div>
             <div class="col align-right">
-                <p>{{flightList.tierPrice | currency:"$":0 }}</p>
+                <p>{{tripDetails['price'] | currency:"$":0 }}</p>
             </div>
         </div>
         <div class="row content-padding">

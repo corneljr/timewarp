@@ -373,7 +373,8 @@ function ($scope, $state, $window, $stateParams, TravellerService, $ionicModal, 
 
     $scope.savedTravellers = TravellerService.travellers;
     $scope.tripDetails = Flights.tripDetails;
-    $scope.totalCost = $scope.tripList['price'] * $scope.savedTravellers.length;
+    $scope.flightDetails = Flights.flightDetails;
+    $scope.totalCost = $scope.tripDetails['price'] * $scope.savedTravellers.length;
     $scope.token = PaymentService.payment_token;
     $scope.card = PaymentService.card_number;
     
@@ -389,7 +390,6 @@ function ($scope, $state, $window, $stateParams, TravellerService, $ionicModal, 
             $ionicHistory.goBack();
           }
         }, function(error_response) {
-          console.log('nopeee');
           console.log(error_response);
         });
     };

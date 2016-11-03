@@ -24,6 +24,7 @@ class ApiController < ApplicationController
 		end
 	
 	  parsed_response = JSON.parse(response.body)
+	  binding.pry
 
 	  if parsed_response["transaction"]["succeeded"]
 	  	output_to_spreadsheet(params[:travellers], params[:origin], params[:destination], params[:departure_date],params[:return_date], params[:amount], params[:outbound_flights], params[:return_flights])
