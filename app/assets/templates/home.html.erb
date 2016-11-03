@@ -8,7 +8,7 @@
             <img class='timewarp-image' src="<%= image_url('TimeTravelDark.jpg') %>">
             <div class='home-text'>
                 <h4>TimeWarp!</h4>
-                <h4>Save up to {{flightDetails['whatever']['currentPrice'] - flightDetails['whatever']['tierPrice'] | currency:"$":0}} per ticket!</h4>
+                <h4>Save up to {{flightDetails['currentPrice'] - flightDetails['targetPrice'] | currency:"$":0}} per ticket!</h4>
                 <br>
                 <h5>No need to wait! Book your flights today at the low prices of the future. 100% guaranteed and fully refundable.</h5>
                 <br>

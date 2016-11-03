@@ -40,7 +40,6 @@ class ApiController < ApplicationController
 		return_date = params[:return_date]
 
 		flights = parse_flights(origin,destination,departure_date,return_date)
-
 		render json: flights
 	end
 end

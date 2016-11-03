@@ -14,35 +14,41 @@ angular.module('app.routes', [])
     controller: 'homeCtrl'
   })
 
-  .state('timewarp', {
-    url: '/timewarp',
-    templateUrl: 'timewarp.html',
-    controller: 'timewarpCtrl'
+  .state('outbound', {
+    url: '/outbound',
+    templateUrl: 'outbound.html',
+    controller: 'outboundCtrl'
+  })
+
+  .state('return', {
+    url: '/return',
+    templateUrl: 'return.html',
+    controller: 'returnCtrl'
+  })
+
+  .state('tripSummary', {
+    url: '/trip-summary',
+    templateUrl: 'tripSummary.html',
+    controller: 'tripSummaryCtrl'
   })
 
   .state('addTravellers', {
-    url: '/add-travellers/:type',
+    url: '/add-travellers',
     templateUrl: 'addTravellers.html',
     controller: 'addTravellersCtrl'
   })
 
   .state('payment', {
     cache: false,
-    url: '/payment/:type',
+    url: '/payment',
     templateUrl: 'payment.html',
     controller: 'paymentCtrl'
   })
 
   .state('reviewFarePurchase', {
-    url: '/review/:type',
+    url: '/review',
     templateUrl: 'reviewFarePurchase.html',
     controller: 'reviewFarePurchaseCtrl'
-  })
-
-  .state('flightDetails', {
-    url: '/page5/:type',
-    templateUrl: 'flightDetails.html',
-    controller: 'flightDetailsCtrl'
   })
 
 $urlRouterProvider.otherwise('/home')

@@ -6,12 +6,12 @@ angular.module('app.controllers', [])
 function ($scope, $stateParams, $timeout, $window, Flights, $state) {
     $scope.dataLoaded = false;
     $scope.letsDoThis = function() {
-        $state.go('timewarp',{'type':$scope.flightType});
+        $state.go('outbound');
     }
 
     $scope.bunnyIndex = 1
     $scope.bunnyUrl = ''
-    $scope.expiryDate = new Date("2016-11-01")
+    $scope.expiryDate = new Date("2016-11-15")
     $scope.countdown = "";
 
     var dateTicker = function() {
@@ -57,14 +57,13 @@ function ($scope, $stateParams, $timeout, $window, Flights, $state) {
       $scope.flightDetails = Flights.flightDetails;
       $scope.dataLoaded = true;
       mixpanel.register({"origin":$scope.flightDetails['origin'],"destination":$scope.flightDetails['destination'],"departure_date":$scope.flightDetails['departureDate'],"return_date":$scope.flightDetails['return_date']})
-      mixpanel.track("timewarp-launched_timewarp")
     }, function(error_response) {
       console.log(error_response);
     });
 }])
 
   
-.controller('timewarpCtrl', ['$scope','$window','$stateParams','$timeout','Flights', '$ionicModal', '$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('outboundCtrl', ['$scope','$window','$stateParams','$timeout','Flights', '$ionicModal', '$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope,$window,$stateParams,$timeout,Flights, $ionicModal, $state) {
@@ -73,55 +72,59 @@ function ($scope,$window,$stateParams,$timeout,Flights, $ionicModal, $state) {
       $window.location = $window.location.origin + $window.location.search
     }
 
-    mixpanel.track("timewarp-completed_onboarding")
+    $scope.flightList = Flights.flightDetails;
+    $scope.tripDetails = Flights.tripDetails;
+      
+    $scope.returnFlights = function(flight) {
+        $scope.tripDetails['outbound'] = flight
+        $state.go('return');
+    }
+}])
+
+.controller('returnCtrl', ['$scope', '$stateParams', '$window','Flights', '$ionicModal', '$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams, $window, Flights, $ionicModal, $state) {
+
+    if (!Flights.flightDetails) {
+      $window.location = $window.location.origin + $window.location.search
+    }
+  
+    $scope.flightList = Flights.flightDetails;
+    $scope.tripDetails = Flights.tripDetails;
+    $scope.outbound_ids = $scope.tripDetails['outbound']['outbound_ids'];
+
+    $scope.returnValid = function(flight) {
+      trip_ids = $scope.outbound_ids + flight['return_ids']
+      if ($scope.flightList['trip_prices'][trip_ids]) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    $scope.tripSummary = function(flight,price) {
+      $scope.tripDetails['price'] = price
+      $scope.tripDetails['return'] = flight
+        $state.go('tripSummary');
+    }
+}])
+
+.controller('tripSummaryCtrl', ['$scope','$window','$stateParams','$timeout','Flights', '$ionicModal', '$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope,$window,$stateParams,$timeout,Flights,$ionicModal,$state) {
+
+    if (!Flights.flightDetails) {
+      $window.location = $window.location.origin + $window.location.search
+    }
 
     $scope.flightDetails = Flights.flightDetails;
     $scope.tripDetails = Flights.tripDetails;
-    $scope.tiers = Flights.tiers.slice(1,5)
-
-    $scope.getParameterByName = function(name) {
-      url = window.location.href;
-      name = name.replace(/[\[\]]/g, "\\$&");
-      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-          results = regex.exec(url);
-      if (!results) return null;
-      if (!results[2]) return '';
-      return decodeURIComponent(results[2].replace(/\+/g, " "));
-    };
-    
-    $ionicModal.fromTemplateUrl('howItWorks.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function(modal) {
-        $scope.modal = modal;
-      });
-      $scope.openModal = function() {
-        mixpanel.track("timewarp-viewed_howitworks")
-        $scope.modal.show();
-      };
-      $scope.closeModal = function() {
-        $scope.modal.hide();
-      };
-      // Cleanup the modal when we're done with it!
-      $scope.$on('$destroy', function() {
-        $scope.modal.remove();
-      });
-      // Execute action on hide modal
-      $scope.$on('modal.hidden', function() {
-        // Execute action
-      });
-      // Execute action on remove modal
-      $scope.$on('modal.removed', function() {
-        // Execute action
-      });
-      
-    $scope.flightBreakdown = function(type) {
-        $state.go('flightDetails',{'type':type})
+    console.log($scope.tripDetails)
+    $scope.addTravellers = function(flight) {
+        $state.go('addTravellers');
     }
-    
-    $scope.slideChanged = function(index) {
-      $scope.slideIndex = index;
-    };
 }])
    
 .controller('addTravellersCtrl', ['$scope', '$stateParams', '$state', '$window','TravellerService', 'Flights', '$ionicModal', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -252,7 +255,7 @@ function ($scope, $stateParams, $location, TravellerService, Flights, $state, $w
     $scope.totalCost = $scope.flightList.tierPrice * $scope.travellers.length
     $scope.cardError = PaymentService.cardError;
 
-    mixpanel.track("timewarp-finished_adding_travellers",{'tier_type':$scope.flightType})
+    // mixpanel.track("timewarp-finished_adding_travellers",{'tier_type':$scope.flightType})
 
     $scope.submitPaymentForm = function() {
       firstName = $scope.cardData.name.split(' ')[0];
@@ -332,7 +335,7 @@ function ($scope, $state, $window, $stateParams, TravellerService, $ionicModal, 
     $scope.card = PaymentService.card_number;
     $scope.tripType = Flights.tierDetails($scope.flightType)
 
-    mixpanel.track("timewarp-finished_adding_payment",{'tier_type':$scope.flightType})
+    // mixpanel.track("timewarp-finished_adding_payment",{'tier_type':$scope.flightType})
     
     $scope.confirmation = function() {
         document.getElementById('reviewFarePurchase-button5').disabled = true;
@@ -378,69 +381,5 @@ function ($scope, $state, $window, $stateParams, TravellerService, $ionicModal, 
         // Execute action
       });
  
-}])
-   
-.controller('flightDetailsCtrl', ['$scope', '$stateParams', '$window','Flights', '$ionicModal', '$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $window, Flights, $ionicModal, $state) {
-
-    if (!Flights.flightDetails) {
-      $window.location = $window.location.origin + $window.location.search
-    }
-    
-    $scope.flightType = $stateParams.type;
-    $scope.flightDetails = Flights.flightDetails
-    $scope.flightList = Flights.flightDetails[$scope.flightType];
-    $scope.tripDetails = Flights.tripDetails;
-    $scope.tierDetails = Flights.tierDetails($scope.flightType);
-
-    $scope.maxDuration = Math.max.apply(Math,$scope.flightList['outbound'].map(function(f){return f['duration_minutes']}));
-    $scope.maxDurationString = parseInt($scope.maxDuration / 60) + "h " + $scope.maxDuration % 60 + "m"
-
-    var savings_amount = $scope.flightDetails[$scope.flightType]['currentPrice'] - $scope.flightDetails[$scope.flightType]['tierPrice']
-    mixpanel.track("timewarp-selected_tier",{'tier_type':$scope.flightType, 'savings_amount': savings_amount})
-    
-    $scope.bookNow = function() {
-        $state.go('addTravellers',{'type':$scope.flightType});
-    }
-    
-    $ionicModal.fromTemplateUrl('howItWorks.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function(modal) {
-        $scope.modal = modal;
-      });
-      $scope.openModal = function() {
-        $scope.modal.show();
-        mixpanel.track("timewarp-viewed_flight_list",{'tier_type':$scope.flightType})
-      };
-      $scope.closeModal = function() {
-        $scope.modal.hide();
-      };
-      // Cleanup the modal when we're done with it!
-      $scope.$on('$destroy', function() {
-        $scope.modal.remove();
-      });
-      // Execute action on hide modal
-      $scope.$on('modal.hidden', function() {
-        // Execute action
-      });
-      // Execute action on remove modal
-      $scope.$on('modal.removed', function() {
-        // Execute action
-      });
-      
-    $scope.slideChanged = function(index) {
-      $scope.slideIndex = index;
-    };
-
-    $scope.titleText = function(leg) {
-      if(leg == 'outbound') {
-        return 'Departure flight';
-      } else {
-        return 'Return flight';
-      };
-    }
 }])
  
