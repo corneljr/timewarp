@@ -98,6 +98,6 @@
                 <h5>Total: {{totalCost() | currency:$:0}}</h5>
             </div>
         </div>
-        <button ng-disabled="travellersCount < 1" ng-click="payment()" style="border-radius:0px 0px 0px 0px;" class="button button-positive button-block">Continue to Payment</button>
+        <button ng-disabled="savedTravellers < 1" ng-click="payment()" style="border-radius:0px 0px 0px 0px;" class="button button-positive button-block">Continue to Payment</button>
     </div>
 </ion-view>

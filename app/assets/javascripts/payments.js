@@ -3,7 +3,7 @@ angular.module('payment', [])
 .service('PaymentService',['$http',function($http) {
     this.getToken = function(card) {
     	return $http({
-    		url: "https://core.spreedly.com/v1/payment_methods.json?environment_key=KI0Ipgd5n7v1JgAN3JBR76yyVTV",
+    		url: "https://core.spreedly.com/v1/payment_methods.json?environment_key=UFfG4cb3JqejWHVsm5fL3ZCqjIk",
     		method: "POST",
     		data: card
     	})

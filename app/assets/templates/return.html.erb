@@ -19,10 +19,10 @@
             <ion-item class='flight-list' ng-repeat="flight in flightList['return']" ng-click="openModal(flight)" ng-if="returnValid(flight)">
                 <div class="row">
                     <div class='col col-center'>
-                        <h2 class='bold'>{{flightList['trip_prices'][outbound_ids + flight['return_ids']] | currency:"$":0}}</h2>
+                        <h2 class='bold'>{{flightList['trip_prices'][outbound_ids + flight['return_ids']] - 50 | currency:"$":0}} <span style='font-size:13px;color:red;'><strike>{{flightList['trip_prices'][outbound_ids + flight['return_ids']] | currency:"$":0}}</strike> Save $50</span></h2>
                     </div>
                     <div class="col col-center">
-                        <p class="align-right" style="color:black;">{{flight.departureTime}} - {{flight.arrivalTime}}</p>
+                        <p class="align-right" style="color:black;">{{flight.departureTime}} - {{flight.arrivalTime}}<span ng-if='flight.newDays > 0'>+{{flight.newDays}}d</span></p>
                     </div>
                 </div>
                 <div class="row">
@@ -42,14 +42,14 @@
     <script id="slice.html" type="text/ng-template">
         <ion-modal-view>
             <ion-header-bar style='border-bottom:1px solid #f0f0f0;'>
-                <a href='#' style='font-size:14px;text-decoration:none;padding:5px;position:absolute;left:10px;top:10px;' ng-click="closeModal()">Cancel</a>
+                <a style='font-size:14px;text-decoration:none;padding:5px;position:absolute;left:10px;top:10px;' ng-click="closeModal()">Cancel</a>
                 <p class='modal-header'>Return <span class='normal-weight'>to {{flightList.destination}}</span></p>
             </ion-header-bar>
                 <ion-content>
                     <div class='flight-card'>
                         <div class="row">
                             <div class='col col-center'>
-                                <h4 class='bold no-margin'>{{flightList['trip_prices'][outbound_ids + trip['return_ids']] | currency:"$":0}}</h4>
+                                <h4 class='bold no-margin'>{{flightList['trip_prices'][outbound_ids + trip['return_ids']] | currency:"$":0}} <span style='font-size:13px;color:red;'><strike>{{flightList['trip_prices'][outbound_ids + flight['return_ids']] | currency:"$":0}}</strike> Save $50</span></h4>
                             </div>
                             <div class="col col-center">
                                 <p class="align-right no-margin">Roundtrip, Per Person</p>
@@ -100,7 +100,7 @@
                                     <p>{{flight['segmentDuration']}}</p>
                                 </div>
                                 <div class='col align-right'>
-                                    <p>{{flight['segmentArrivalTime']}}</p>
+                                    <p>{{flight['segmentArrivalTime']}}<span ng-if="flight['segmentNewDays'] > 0">+{{flight['segmentNewDays']}}d</span></p>
                                 </div>
                             </div>
                         </div>

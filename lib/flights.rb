@@ -1,6 +1,6 @@
 module Flights
 
-	def parse_flights(origin,destination,departure_date,return_date)
+	def parse_flights(origin,destination,departure_date,return_date,airline)
 		uri = URI("https://mobile-api.hopper.com/api/v1/cards?origin=#{origin}&destination=#{destination}&departure=#{departure_date}&return=#{return_date}")
 		response = Net::HTTP.get(uri)
 		parsed_response = JSON.parse(response)
@@ -42,7 +42,7 @@ module Flights
 		return_details = {}
 
 		flights.each do |flight|
-			next if test_for_warnings(flight) || flight['carriers'] != ["UA"]
+			next if flight['carriers'] != [airline]
 
 			['outbound','return'].each do |leg|
 				duration = flight["#{leg}_duration"].to_i
@@ -51,11 +51,16 @@ module Flights
 				departure_epoch_seconds = ((flight["#{leg}_departure_time"].to_i + flight["#{leg == 'outbound' ? 'return' : 'outbound'}_arrival_tz_offset"].to_i) / 1000)
 				arrival_epoch_seconds = ((flight["#{leg}_arrival_time"].to_i + flight["#{leg == 'outbound' ? 'outbound' : 'return'}_arrival_tz_offset"].to_i) / 1000)
 
+				dep = DateTime.strptime(departure_epoch_seconds.to_s,"%s").strftime("%b %-d")
+				arr = DateTime.strptime(arrival_epoch_seconds.to_s,"%s").strftime("%b %-d")
+				new_days = (Date.parse(arr) - Date.parse(dep)).to_i
+
 				details = {'duration' => duration_string,
-						   'departureDay' => DateTime.strptime(departure_epoch_seconds.to_s,"%s").strftime("%b %-d"),
+						   'departureDay' => dep,
 						   'departureTime' => DateTime.strptime(departure_epoch_seconds.to_s,"%s").strftime("%-l:%M%P"),
-						   'arrivalDay' => DateTime.strptime(arrival_epoch_seconds.to_s,"%s").strftime("%b %-d"),
+						   'arrivalDay' => arr,
 						   'arrivalTime' => DateTime.strptime(arrival_epoch_seconds.to_s,"%s").strftime("%-l:%M%P"),
+						   'newDays' => new_days,
 						   'stops' => flight["#{leg}_stops"], 
 						   'airline' => data['carriers'][data['carriers'].find_index {|x| x['code'] == flight['primary_carrier']}]['name'], 
 						   'airlineImageUrl' => ActionController::Base.helpers.image_url("#{flight["primary_carrier"]}_icon.png"),
@@ -85,15 +90,20 @@ module Flights
 				departure_epoch_seconds = ((segment["segment_departure_time"].to_i + segment["segment_departure_tz_offset"].to_i) / 1000)
 				arrival_epoch_seconds = ((segment["segment_arrival_time"].to_i + segment["segment_arrival_tz_offset"].to_i) / 1000)
 
+				dep = DateTime.strptime(departure_epoch_seconds.to_s,"%s").strftime("%b %-d")
+				arr = DateTime.strptime(arrival_epoch_seconds.to_s,"%s").strftime("%b %-d")
+				new_days = (Date.parse(arr) - Date.parse(dep)).to_i
+
 				flight_info['segmentOrigin'] = segment['segment_origin']
 				flight_info['segmentOriginString'] = data['airports'][data['airports'].find_index {|x| x['iata_code'] == segment['segment_origin']}]['served_entity']['name']
 				flight_info['segmentDestination'] = segment['segment_destination']
 				flight_info['segmentDestinationString'] = data['airports'][data['airports'].find_index {|x| x['iata_code'] == segment['segment_destination']}]['served_entity']['name']
 				flight_info['id'] = segment['carrier_code'] + segment['flight_number']
-				flight_info['segmentDepartureDay'] = DateTime.strptime(departure_epoch_seconds.to_s,"%s").strftime("%b %-d")
+				flight_info['segmentDepartureDay'] = dep
 				flight_info['segmentDepartureTime'] = DateTime.strptime(departure_epoch_seconds.to_s,"%s").strftime("%-l:%M%P")
-				flight_info['segmentArrivalDay'] = DateTime.strptime(arrival_epoch_seconds.to_s,"%s").strftime("%b %-d")
+				flight_info['segmentArrivalDay'] = arr
 				flight_info['segmentArrivalTime'] = DateTime.strptime(arrival_epoch_seconds.to_s,"%s").strftime("%-l:%M%P")
+				flight_info['segmentNewDays'] = new_days
 
 				duration = segment["duration"].to_i
 				segment_duration_string = "#{duration / 60}h #{duration % 60}m"

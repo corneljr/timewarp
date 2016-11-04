@@ -24,7 +24,6 @@ class ApiController < ApplicationController
 		end
 	
 	  parsed_response = JSON.parse(response.body)
-	  binding.pry
 
 	  if parsed_response["transaction"]["succeeded"]
 	  	output_to_spreadsheet(params[:travellers], params[:origin], params[:destination], params[:departure_date],params[:return_date], params[:amount], params[:outbound_flights], params[:return_flights])
@@ -39,8 +38,9 @@ class ApiController < ApplicationController
 		destination = params[:destination]
 		departure_date = params[:departure_date]
 		return_date = params[:return_date]
+		airline = params[:airline]
 
-		flights = parse_flights(origin,destination,departure_date,return_date)
+		flights = parse_flights(origin,destination,departure_date,return_date,airline)
 		render json: flights
 	end
 end

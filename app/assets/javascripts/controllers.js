@@ -49,17 +49,19 @@ function ($scope, $stateParams, $timeout, $window, Flights, $state) {
       return decodeURIComponent(results[2].replace(/\+/g, " "));
     };
 
-    Flights.tripDetails = {'origin': $scope.getParameterByName('origin'),'destination': $scope.getParameterByName('destination'), 'departureDate': $scope.getParameterByName('departure'), 'returnDate': $scope.getParameterByName('return')}
+    Flights.tripDetails = {'origin': $scope.getParameterByName('origin'),'destination': $scope.getParameterByName('destination'), 'departureDate': $scope.getParameterByName('departure'), 'returnDate': $scope.getParameterByName('return'),'airline': $scope.getParameterByName('airline')}
     $scope.tripDetails = Flights.tripDetails;
-    promise = Flights.getFlights($scope.tripDetails.origin,$scope.tripDetails.destination,$scope.tripDetails.departureDate,$scope.tripDetails.returnDate);
+    promise = Flights.getFlights($scope.tripDetails.origin,$scope.tripDetails.destination,$scope.tripDetails.departureDate,$scope.tripDetails.returnDate,$scope.tripDetails.airline);
     promise.then( function(response){
       Flights.flightDetails = response.data;
       $scope.flightDetails = Flights.flightDetails;
       $scope.dataLoaded = true;
-      mixpanel.register({"origin":$scope.flightDetails['origin'],"destination":$scope.flightDetails['destination'],"departure_date":$scope.flightDetails['departureDate'],"return_date":$scope.flightDetails['return_date']})
+      mixpanel.register({"origin":$scope.flightDetails['origin'],"destination":$scope.flightDetails['destination'],"departure_date":$scope.flightDetails['departureDate'],"return_date":$scope.flightDetails['return_date'],"user_id":$scope.getParameterByName('user_id')})
     }, function(error_response) {
       console.log(error_response);
     });
+
+    mixpanel.track("timewarpnet-launched_timewarp")
 }])
 
   
@@ -89,6 +91,7 @@ function ($scope,$window,$stateParams,$timeout,Flights, $ionicModal, $state) {
       });
       $scope.openModal = function(trip) {
         $scope.trip = trip;
+        mixpanel.track("timewarpnet-selected_outbound")
         $scope.modal.show();
       };
       $scope.closeModal = function() {
@@ -106,6 +109,8 @@ function ($scope,$window,$stateParams,$timeout,Flights, $ionicModal, $state) {
       $scope.$on('modal.removed', function() {
         // Execute action
       });
+
+    mixpanel.track("timewarpnet-completed_onboarding")
 }])
 
 .controller('returnCtrl', ['$scope', '$stateParams', '$window','Flights', '$ionicModal', '$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -145,6 +150,7 @@ function ($scope, $stateParams, $window, Flights, $ionicModal, $state) {
       });
       $scope.openModal = function(trip) {
         $scope.trip = trip;
+        mixpanel.track("timewarpnet-selected_return")
         $scope.modal.show();
       };
       $scope.closeModal = function() {
@@ -162,6 +168,8 @@ function ($scope, $stateParams, $window, Flights, $ionicModal, $state) {
       $scope.$on('modal.removed', function() {
         // Execute action
       });
+
+      mixpanel.track("timewarpnet-confirmed_outbound")
 }])
 
 .controller('tripSummaryCtrl', ['$scope','$window','$stateParams','$timeout','Flights', '$ionicModal', '$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -178,6 +186,8 @@ function ($scope,$window,$stateParams,$timeout,Flights,$ionicModal,$state) {
     $scope.addTravellers = function() {
         $state.go('addTravellers');
     }
+
+    mixpanel.track("timewarpnet-confirmed_return")
 }])
    
 .controller('addTravellersCtrl', ['$scope', '$stateParams', '$state', '$window','TravellerService', 'Flights', '$ionicModal', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -196,7 +206,7 @@ function ($scope, $stateParams, $state, $window,TravellerService, Flights, $ioni
 
     $scope.totalCost = function() {
       if ($scope.savedTravellers) {
-        return $scope.tripDetails['price'] * $scope.savedTravellers.length  
+        return ($scope.tripDetails['price'] - 50) * $scope.savedTravellers.length  
       } else {
         return 0
       }
@@ -284,6 +294,7 @@ function ($scope, $stateParams, $state, $window,TravellerService, Flights, $ioni
         // Execute action
       });
 
+    mixpanel.track("timewarpnet-confirmed_trip")
 }])
    
 .controller('paymentCtrl', ['$scope', '$stateParams','$location','TravellerService', 'Flights', '$state','$window', 'PaymentService', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -299,10 +310,8 @@ function ($scope, $stateParams, $location, TravellerService, Flights, $state, $w
     $scope.tripDetails = Flights.tripDetails;
     $scope.formErrors = []
 
-    $scope.totalCost = $scope.tripDetails['price'] * $scope.travellers.length
+    $scope.totalCost = ($scope.tripDetails['price'] - 50) * $scope.travellers.length
     $scope.cardError = PaymentService.cardError;
-
-    // mixpanel.track("timewarp-finished_adding_travellers",{'tier_type':$scope.flightType})
 
     $scope.submitPaymentForm = function() {
       firstName = $scope.cardData.name.split(' ')[0];
@@ -360,6 +369,8 @@ function ($scope, $stateParams, $location, TravellerService, Flights, $state, $w
         'zipCode': '',
         'name': ''
     }
+
+    mixpanel.track("timewarpnet-finished_adding_travellers")
 }])
    
 .controller('reviewFarePurchaseCtrl', ['$scope', '$state', '$window','$stateParams', 'TravellerService', '$ionicModal', '$ionicHistory','Flights','PaymentService', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -374,7 +385,7 @@ function ($scope, $state, $window, $stateParams, TravellerService, $ionicModal, 
     $scope.savedTravellers = TravellerService.travellers;
     $scope.tripDetails = Flights.tripDetails;
     $scope.flightDetails = Flights.flightDetails;
-    $scope.totalCost = $scope.tripDetails['price'] * $scope.savedTravellers.length;
+    $scope.totalCost = ($scope.tripDetails['price'] - 50) * $scope.savedTravellers.length;
     $scope.token = PaymentService.payment_token;
     $scope.card = PaymentService.card_number;
     
@@ -383,6 +394,7 @@ function ($scope, $state, $window, $stateParams, TravellerService, $ionicModal, 
         promise = PaymentService.chargeCard(PaymentService.payment_token,$scope.totalCost, $scope.savedTravellers, $scope.tripDetails['origin'], $scope.tripDetails['destination'], $scope.tripDetails['departureDate'], $scope.tripDetails['returnDate'], $scope.tripDetails['outbound']['outbound_ids'],$scope.tripDetails['return']['return_ids'])
         promise.then( function(response){
           if (response['data']['success']) {
+            mixpanel.track("timewarpnet-completed_booking")
             $scope.openModal();
           } else {
             document.getElementById('reviewFarePurchase-button5').disabled = true;
@@ -418,6 +430,7 @@ function ($scope, $state, $window, $stateParams, TravellerService, $ionicModal, 
       $scope.$on('modal.removed', function() {
         // Execute action
       });
- 
+
+    mixpanel.track("timewarpnet-finished_adding_payment")
 }])
  
