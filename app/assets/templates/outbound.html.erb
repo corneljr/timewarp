@@ -18,10 +18,10 @@
         <ion-list>
             <ion-item class='flight-list' ng-repeat="flight in flightList['outbound']" ng-click="openModal(flight)">
                 <div class="row">
-                    <div class='col col-center'>
-                        <h2 class='bold'>{{flightList['trip_prices'][flight['outbound_ids']] - 50 | currency:"$":0}} <span style='font-size:13px;color:red;'><strike>{{flightList['trip_prices'][flight['outbound_ids']] | currency:"$":0}}</strike> Save $50</span></h2>
+                    <div class='col'>
+                        <h2 class='bold' style='white-space:normal;'>{{flightList['trip_prices'][flight['outbound_ids']] - 50 | currency:"$":0}} <span style='color:red;'><strike>{{flightList['trip_prices'][flight['outbound_ids']] | currency:"$":0}}</strike></h2>
                     </div>
-                    <div class="col col-center">
+                    <div class="col">
                         <p class="align-right" style='color:black;'>{{flight.departureTime}} - {{flight.arrivalTime}}<span ng-if='flight.newDays > 0'>+{{flight.newDays}}d</span></p>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                     <div class='flight-card'>
                         <div class="row">
                             <div class='col col-center'>
-                                <h4 class='bold no-margin'>{{flightList['trip_prices'][trip['outbound_ids']] - 50 | currency:"$":0}} <span style='font-size:13px;color:red;'><strike>{{flightList['trip_prices'][trip['outbound_ids']] | currency:"$":0}}</strike> Save $50</span></h4>
+                                <h4 class='bold no-margin'>{{flightList['trip_prices'][trip['outbound_ids']] - 50 | currency:"$":0}} <span style='color:red;'><strike>{{flightList['trip_prices'][trip['outbound_ids']] | currency:"$":0}}</strike></span></h4>
                             </div>
                             <div class="col col-center">
                                 <p class="align-right no-margin">Roundtrip, Per Person</p>
