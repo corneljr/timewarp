@@ -60,7 +60,7 @@
                                 <p class='align-left no-margin'>{{flightList.departureDate | date:'EEE MMM d, yyyy'}}</p>
                             </div>
                             <div class="col">
-                                <p class="align-right no-margin">{{trip.duration}}, <ng-pluralize count="trip['stops']" when="{'1': '1 stop','other':'{} stops'}"></ng-pluralize></ng-pluralize></p>
+                                <p class="align-right no-margin">{{trip.duration}}, <ng-pluralize count="trip['stops']" when="{'0':'nonstop','1': '1 stop','other':'{} stops'}"></ng-pluralize></ng-pluralize></p>
                             </div>
                         </div>
                         <div class='trip-slice' ng-repeat="flight in trip['flights']">

@@ -3,9 +3,6 @@
         <div class='info-container' ng-if="cardError">
             <p style='color:red;'>There was an error with your card. Please make sure all of your information is correct.</p>
         </div>
-        <div class='info-container'>
-            <p>Your Timewarp ticket is fully refundable up until 24 hours after official ticketing.</p>
-        </div>
         <div class='info-container' ng-if='formErrors.length > 0'>
             <p ng-repeat='error in formErrors'>{{error.message}}</p>
         </div>
