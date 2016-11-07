@@ -1,0 +1,657 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <!-- NAME: 1 COLUMN -->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{__SUBJECT__}}</title>
+
+  
+<style type="text/css">
+    body,#bodyTable,#bodyCell{
+      height:100% !important;
+      margin:0;
+      padding:0;
+      width:100% !important;
+      font-family:helvetica;
+    }
+    table{
+      border-collapse:collapse;
+    }
+    img,a img{
+      border:0;
+      outline:none;
+      text-decoration:none;
+    }
+    h1,h2,h3,h4,h5,h6{
+      margin:0;
+      padding:0;
+    }
+    p{
+      margin:1em 0;
+      padding:0;
+    }
+    a{
+      word-wrap:break-word;
+    }
+    .ReadMsgBody{
+      width:100%;
+    }
+    .ExternalClass{
+      width:100%;
+    }
+    .ExternalClass,.ExternalClass p,.ExternalClass span,.ExternalClass font,.ExternalClass td,.ExternalClass div{
+      line-height:100%;
+    }
+    table,td{
+      mso-table-lspace:0pt;
+      mso-table-rspace:0pt;
+    }
+    #outlook a{
+      padding:0;
+    }
+    img{
+      -ms-interpolatio1n-mode:bicubic;
+    }
+    body,table,td,p,a,li,blockquote{
+      -ms-text-size-adjust:100%;
+      -webkit-text-size-adjust:100%;
+    }
+    #bodyCell{
+      padding:0px;
+    }
+    .mcnImage{
+      vertical-align:bottom;
+    }
+    .mcnTextContent img{
+      height:auto !important;
+    }
+  /*
+  @tab Page
+  @section background style
+  @tip Set the background color and top border for your email. You may want to choose colors that match your company's branding.
+  */
+    body,#bodyTable{
+      /*@editable*/background-color:#F2F2F2;
+    }
+  /*
+  @tab Page
+  @section background style
+  @tip Set the background color and top border for your email. You may want to choose colors that match your company's branding.
+  */
+    #bodyCell{
+      /*@editable*/border-top:0;
+    }
+  /*
+  @tab Page
+  @section email border
+  @tip Set the border for your email.
+  */
+    #templateContainer{
+      /*@editable*/border:0;
+    }
+  /*
+  @tab Page
+  @section heading 1
+  @tip Set the styling for all first-level headings in your emails. These should be the largest of your headings.
+  @style heading 1
+  */
+    h1{
+      /*@editable*/color:#606060 !important;
+      display:block;
+      /*@editable*/font-family:Helvetica;
+      /*@editable*/font-size:40px;
+      /*@editable*/font-style:normal;
+      /*@editable*/font-weight:bold;
+      /*@editable*/line-height:125%;
+      /*@editable*/letter-spacing:-1px;
+      margin:0;
+      /*@editable*/text-align:left;
+    }
+  /*
+  @tab Page
+  @section heading 2
+  @tip Set the styling for all second-level headings in your emails.
+  @style heading 2
+  */
+    h2{
+      /*@editable*/color:#404040 !important;
+      display:block;
+      /*@editable*/font-family:Helvetica;
+      /*@editable*/font-size:26px;
+      /*@editable*/font-style:normal;
+      /*@editable*/font-weight:bold;
+      /*@editable*/line-height:125%;
+      /*@editable*/letter-spacing:-.75px;
+      margin:0;
+      /*@editable*/text-align:left;
+    }
+  /*
+  @tab Page
+  @section heading 3
+  @tip Set the styling for all third-level headings in your emails.
+  @style heading 3
+  */
+    h3{
+      /*@editable*/color:#606060 !important;
+      display:block;
+      /*@editable*/font-family:Helvetica;
+      /*@editable*/font-size:18px;
+      /*@editable*/font-style:normal;
+      /*@editable*/font-weight:bold;
+      /*@editable*/line-height:125%;
+      /*@editable*/letter-spacing:-.5px;
+      margin:0;
+      /*@editable*/text-align:left;
+    }
+  /*
+  @tab Page
+  @section heading 4
+  @tip Set the styling for all fourth-level headings in your emails. These should be the smallest of your headings.
+  @style heading 4
+  */
+    h4{
+      /*@editable*/color:#808080 !important;
+      display:block;
+      /*@editable*/font-family:Helvetica;
+      /*@editable*/font-size:16px;
+      /*@editable*/font-style:normal;
+      /*@editable*/font-weight:bold;
+      /*@editable*/line-height:125%;
+      /*@editable*/letter-spacing:normal;
+      margin:0;
+      /*@editable*/text-align:left;
+    }
+  /*
+  @tab Preheader
+  @section preheader style
+  @tip Set the background color and borders for your email's preheader area.
+  */
+    #templatePreheader{
+      /*@editable*/background-color:#F2F2F2;
+      /*@editable*/border-top:0;
+      /*@editable*/border-bottom:0;
+    }
+  /*
+  @tab Preheader
+  @section preheader text
+  @tip Set the styling for your email's preheader text. Choose a size and color that is easy to read.
+  */
+    .preheaderContainer .mcnTextContent,.preheaderContainer .mcnTextContent p{
+      /*@editable*/color:#ffffff;
+      /*@editable*/font-family:Tahoma, Verdana, Segoe, sans-serif;
+      /*@editable*/font-size:14px;
+      /*@editable*/line-height:125%;
+      /*@editable*/text-align:left;
+    }
+  /*
+  @tab Preheader
+  @section preheader link
+  @tip Set the styling for your email's header links. Choose a color that helps them stand out from your text.
+  */
+    .preheaderContainer .mcnTextContent a{
+      /*@editable*/color:#606060;
+      /*@editable*/font-weight:normal;
+      /*@editable*/text-decoration:none;
+    }
+  /*
+  @tab Header
+  @section header style
+  @tip Set the background color and borders for your email's header area.
+  */
+    #templateHeader{
+      /*@editable*/background-color:#63B67F;
+      /*@editable*/border-top:0;
+      /*@editable*/border-bottom:0;
+    }
+  /*
+  @tab Header
+  @section header text
+  @tip Set the styling for your email's header text. Choose a size and color that is easy to read.
+  */
+    .headerContainer .mcnTextContent,.headerContainer .mcnTextContent p{
+      /*@editable*/color:#ffffff;
+      /*@editable*/font-family:Helvetica;
+      /*@editable*/font-size:16px;
+      /*@editable*/line-height:150%;
+      /*@editable*/text-align:left;
+    }
+  /*
+  @tab Header
+  @section header link
+  @tip Set the styling for your email's header links. Choose a color that helps them stand out from your text.
+  */
+    .headerContainer .mcnTextContent a{
+      /*@editable*/color:#6DC6DD;
+      /*@editable*/font-weight:normal;
+      /*@editable*/text-decoration:none;
+    }
+  /*
+  @tab Body
+  @section body style
+  @tip Set the background color and borders for your email's body area.
+  */
+    #templateBody{
+      /*@editable*/background-color:#F2F2F2;
+      /*@editable*/border-top:0;
+      /*@editable*/border-bottom:0;
+    }
+  /*
+  @tab Body
+  @section body text
+  @tip Set the styling for your email's body text. Choose a size and color that is easy to read.
+  */
+    .bodyContainer .mcnTextContent,.bodyContainer .mcnTextContent p{
+      /*@editable*/color:#878787;
+      /*@editable*/font-family:Helvetica;
+      /*@editable*/font-size:16px;
+      /*@editable*/line-height:150%;
+      /*@editable*/text-align:left;
+    }
+  /*
+  @tab Body
+  @section body link
+  @tip Set the styling for your email's body links. Choose a color that helps them stand out from your text.
+  */
+    .bodyContainer .mcnTextContent a{
+      /*@editable*/color:#01AAE4;
+      /*@editable*/font-weight:normal;
+      /*@editable*/text-decoration:none;
+    }
+  /*
+  @tab Footer
+  @section footer style
+  @tip Set the background color and borders for your email's footer area.
+  */
+    #templateFooter{
+      /*@editable*/background-color:#F2F2F2;
+      /*@editable*/border-top:0;
+      /*@editable*/border-bottom:0;
+    }
+  /*
+  @tab Footer
+  @section footer text
+  @tip Set the styling for your email's footer text. Choose a size and color that is easy to read.
+  */
+    .footerContainer .mcnTextContent,.footerContainer .mcnTextContent p{
+      /*@editable*/color:#606060;
+      /*@editable*/font-family:Helvetica;
+      /*@editable*/font-size:11px;
+      /*@editable*/line-height:125%;
+      /*@editable*/text-align:left;
+    }
+  /*
+  @tab Footer
+  @section footer link
+  @tip Set the styling for your email's footer links. Choose a color that helps them stand out from your text.
+  */
+    .footerContainer .mcnTextContent a{
+      /*@editable*/color:#606060;
+      /*@editable*/font-weight:normal;
+      /*@editable*/text-decoration:none;
+    }
+</style></head>
+
+<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
+
+<div style="display:none; line-height:0;">
+  <!-- {{> partials/metadata}} -->
+</div>
+
+<center>
+  <table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable" style="background-color:#F2F2F2;">
+    <tr>
+      <td align="center" valign="top" id="bodyCell">
+        <table border="0" cellpadding="0" cellspacing="0" width="450" id="templateContainer">
+          <tr>
+            <td align="center" valign="top">
+              <table border="0" cellpadding="0" cellspacing="0" width="450" id="templatePreheader">
+                <tr>
+                  <td valign="top" class="preheaderContainer" style="padding-top:24px;">
+                  </td></tr><tbody class="mcnImageBlockOuter">
+                  <tr>
+                    <td valign="top" style="padding: 0px 9px 30px 9px" class="mcnImageBlockInner">
+                      <table align="left" width="100%" border="0" cellpadding="0" cellspacing="0" class="mcnImageContentContainer">
+                        <tbody><tr>
+                          <td class="mcnImageContent" valign="top" style="padding-right: 9px; padding-left: 9px; padding-top: 0; padding-bottom: 0; text-align:center;">
+                            <img align="center" alt="" src="https://cdn.hopper.com/media/coral-hopper?1474398055621" width="164px" style="max-width:164px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
+                          </td>
+                        </tr>
+                      </tbody></table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock">
+                <tbody class="mcnTextBlockOuter">
+                <tr>
+                  <td valign="top" class="mcnTextBlockInner">
+
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" width="450" class="mcnTextContentContainer">
+                      <tbody>
+                      <tr>
+
+                        <td valign="top" class="mcnTextContent" style="padding: 9px 18px 24px; text-align: center; line-height: 22px;font-size:18px; font-family: Helvetica; color: #3f3f3f">
+                          <span>Pack your bags!</span>
+                          <br><br>
+                          <span>Check out your full receipt with flight details below.</span>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" valign="top">
+        </td></tr><tr>
+          <td align="center" valign="top">
+            <table border="0" cellpadding="0" cellspacing="0" width="450" id="templateHeader" style="background:#63b67f; color: #fff;">
+              <tr>
+          <td valign="top" class="headerContainer">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock">
+              <tbody class="mcnTextBlockOuter">
+                <tr>
+            <td valign="top" class="mcnTextBlockInner">
+              <table align="left" border="0" cellpadding="0" cellspacing="0" width="450" class="mcnTextContentContainer" style="color: #fff;">
+                <tbody><tr>
+              <td valign="top" class="mcnTextContent" style="padding-top:24px; padding-right: 175px; padding-bottom: 18px; padding-left: 175px;">
+                <div style="text-align: center; border: 1px solid #fff; border-radius: 11px;"><span style="font-size:16px">Confirmed</span></div>
+              </td>
+                  </tr>
+              </tbody></table>
+            </td>
+                </tr>
+              </tbody>
+            </table>
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock">
+              <tbody class="mcnTextBlockOuter">
+                <tr>
+            <td valign="top" class="mcnTextBlockInner">
+
+              <!-- Airline record locators -->
+              <table align="center" border="0" cellpadding="0" cellspacing="0" width="450" class="mcnTextContentContainer">
+                <tr>
+                  <td style="padding-bottom:45px">
+              <table align="center" border="0" cellpadding="0" cellspacing="0" width="225" class="mcnTextContentContainer" style="color: #fff;">
+                <tbody>
+                  <tr>
+                    <td valign="top" class="mcnTextContent" style="padding-top:9px; padding-left:18px; padding-bottom:9px; padding-right:18px;">
+                <div style="text-align: center; line-height: 200%; font-size: 16px;">Hopper Confirmation<br><span style="font-size:28px"><strong>TW913149</strong></span>
+                </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      
+    
+    <tr>
+      <td align="center" valign="top">
+        <table border="0" cellpadding="0" cellspacing="0" width="450" id="templateBody">
+          <tr>
+            <td class="bodyContainer">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #fff;">
+                <tr>
+                  <td>
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock">
+                      <tbody class="mcnTextBlockOuter">
+                      <tr>
+                        <td valign="top" class="mcnTextBlockInner">
+
+                          <table align="left" border="0" cellpadding="0" cellspacing="0" width="450" class="mcnTextContentContainer">
+                            <tbody><tr>
+
+                              <td valign="top" class="mcnTextContent" style="padding-top:18px; padding-right: 18px; padding-bottom: 0px; padding-left: 18px;">
+
+                                <span style="font-size:18px; color: #3f3f3f"><strong>Outbound</strong> to Los Angeles</span>
+                              </td>
+                            </tr>
+                            </tbody></table>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock">
+                      <tbody class="mcnTextBlockOuter">
+                        <tr>
+                          <td valign="top" class="mcnTextBlockInner">
+
+                            <table align="left" border="0" cellpadding="0" cellspacing="0" width="207" class="mcnTextContentContainer">
+                              <tbody>
+                                <tr>
+                                  <td valign="top" class="mcnTextContent" style="padding-top:4px; padding-left:18px; padding-bottom:9px; padding-right:0;">
+                                    <span style="font-size:16px; color: #878787">December 24, 2016</span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <table align="right" border="0" cellpadding="0" cellspacing="0" width="207" class="mcnTextContentContainer">
+                              <tbody>
+                                <tr>
+                                  <td valign="top" class="mcnTextContent" style="padding-top:4px; padding-right:18px; padding-bottom:9px; padding-left:0;">
+                                    <div style="text-align: right;">
+                                      <span style="font-size:16px; color: #878787">
+                                        Morning flight, non-stop.
+                                      </span>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #fff; margin-top: 6px;">
+                <tr>
+                  <td>
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock">
+                      <tbody class="mcnTextBlockOuter">
+                      <tr>
+                        <td valign="top" class="mcnTextBlockInner">
+                          <table align="left" border="0" cellpadding="0" cellspacing="0" width="450" class="mcnTextContentContainer">
+                            <tbody>
+                            <tr>
+                              <td valign="top" class="mcnTextContent" style="padding-top:18px; padding-right: 18px; padding-bottom: 0px; padding-left: 18px;">
+                                <span style="font-size:18px; color: #3f3f3f"><strong>Return</strong> to Boston</span>
+                              </td>
+                            </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                     <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock">
+                      <tbody class="mcnTextBlockOuter">
+                        <tr>
+                          <td valign="top" class="mcnTextBlockInner">
+
+                            <table align="left" border="0" cellpadding="0" cellspacing="0" width="207" class="mcnTextContentContainer">
+                              <tbody>
+                                <tr>
+                                  <td valign="top" class="mcnTextContent" style="padding-top:4px; padding-left:18px; padding-bottom:9px; padding-right:0;">
+                                    <span style="font-size:16px; color: #878787">December 28, 2016</span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <table align="right" border="0" cellpadding="0" cellspacing="0" width="207" class="mcnTextContentContainer">
+                              <tbody>
+                                <tr>
+                                  <td valign="top" class="mcnTextContent" style="padding-top:4px; padding-right:18px; padding-bottom:9px; padding-left:0;">
+                                    <div style="text-align: right;">
+                                      <span style="font-size:16px; color: #878787">
+                                        Morning flight, non-stop.
+                                      </span>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="bodyContainer">
+              <div style="background-color: #fff; margin-top: 12px; padding: 24px 18px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+                  <tr>
+                    <td style="border-bottom: 1px solid #F2F2F2; padding-bottom: 18px">
+                      <span style="font-size:18px; color: #3F3F3F;"><strong>Fare Details</strong></span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding-top: 12px;">
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock">
+                        <tbody class="mcnTextBlockOuter" style="font-size: 16px;color: #878787;letter-spacing: 0px;line-height: 28px;">
+                        <!-- Passengers -->
+
+                          <tr>
+                            <td style="">
+                              Adriana Estrada
+                            </td>
+                            <td width="45%" style="text-align: right;">$588</td>
+                          </tr>
+                          <tr>
+                            <td style="">
+                              Scott McGinn
+                            </td>
+                            <td width="45%" style="text-align: right;">$588</td>
+                          </tr>
+
+                          <tr>
+                            <td>
+                              <strong><span style="font-size: 16px; color: #3F3F3F;">Total</span></strong>
+                            </td>
+
+                            <td width="45%" style="text-align: right">
+                              <strong><span style="font-size: 16px; color: #3F3F3F;">$1176</span></strong>
+                            </td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="bodyContainer">
+              <div style="background-color: #fff; margin-top: 12px; padding: 24px 18px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+                  <tr>
+                    <td style="border-bottom: 1px solid #F2F2F2; padding-bottom: 18px">
+                      <span style="font-size:18px; color: #3F3F3F;"><strong>Flight Details</strong></span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding-top: 12px;">
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock">
+                        <tbody class="mcnTextBlockOuter" style="font-size: 16px;color: #878787;letter-spacing: 0px;line-height: 28px;">
+                          You will receive your flight confirmation at least a month before departure. Your flights are 100% guaranteed. 
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" valign="top">
+        <table border="0" cellpadding="0" cellspacing="0" width="450" id="templateFooter">
+          <tr>
+            <td valign="top" class="footerContainer" style="padding-bottom:9px;">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock">
+                <tbody class="mcnTextBlockOuter">
+                  <tr>
+                    <td valign="top" class="mcnTextBlockInner">
+                      <table align="center" border="0" cellpadding="0" cellspacing="0" width="450" class="mcnTextContentContainer">
+                        <tbody><tr>
+                          <td valign="top" class="mcnTextContent" style="padding: 24px;">
+                            <div style="text-align: center;">
+                              <div style="display:none; white-space:nowrap; font:14px courier; line-height:0;">
+                                <!-- fix for gmail app resize email -->
+                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>
+                              <span style="font-size:14px;color: #878787; line-height: 150%; padding-bottom:20px; display:inline-block;">
+                                If you need to cancel or modify your flight, don't hesitate to email us at support@hopper.com.
+                              </span><br>
+                              <span style="font-size:14px;color: #878787; line-height: 150%;">Thanks for using Hopper! Have a great trip!<br>
+                              Copyright 2016 Hopper. All rights reserved.
+                            </span></div>
+                          </td>
+                        </tr>
+                      </tbody></table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnImageBlock" style="background-color:#F2F2F2;">
+                <tbody class="mcnImageBlockOuter">
+                  <tr>
+                    <td valign="top" style="padding:0px" class="mcnImageBlockInner">
+                      <table align="left" width="100%" border="0" cellpadding="0" cellspacing="0" class="mcnImageContentContainer">
+                        <tbody><tr>
+                          <td class="mcnImageContent" valign="top" style="padding-right: 9px; padding-left: 9px; padding-top: 0; padding-bottom: 10px; text-align:center; width=100%;">
+                            <center>
+                              <img align="center" alt="" src="https://cdn.hopper.com/deepview/save_money_bunny?1470670007405" width="83" style="max-width:83px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
+                            </center>
+                          </td>
+                        </tr>
+                      </tbody></table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</center>
+</body>
+</html>
+
