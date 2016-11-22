@@ -11,7 +11,7 @@ function ($scope, $stateParams, $timeout, $window, Flights, $state) {
 
     $scope.bunnyIndex = 1
     $scope.bunnyUrl = ''
-    $scope.expiryDate = new Date("2016-11-19")
+    $scope.expiryDate = new Date("2016-11-26")
     $scope.countdown = "";
 
     var dateTicker = function() {

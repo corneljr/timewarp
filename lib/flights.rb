@@ -146,7 +146,7 @@ module Flights
 
 		flight['trip_warnings']['sliceInfos'].each do |slice|
 			slice['warnings'].each do |warning|
-				if warning['warning'] == 'This trip includes an overnight layover.'
+				if warning['warning'] == 'This trip includes a long layover.'
 					tester = true
 				end
 			end
