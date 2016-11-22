@@ -136,9 +136,17 @@ module Flights
 
 	def test_for_warnings(flight)
 		tester = false
+		# flight['trip_warnings']['sliceInfos'].each do |slice|
+		# 	slice['warnings'].each do |warning|
+		# 		if warning['level'] == 'high'
+		# 			tester = true
+		# 		end
+		# 	end
+		# end
+
 		flight['trip_warnings']['sliceInfos'].each do |slice|
 			slice['warnings'].each do |warning|
-				if warning['level'] == 'high'
+				if warning['warning'] == 'This trip includes an overnight layover.'
 					tester = true
 				end
 			end

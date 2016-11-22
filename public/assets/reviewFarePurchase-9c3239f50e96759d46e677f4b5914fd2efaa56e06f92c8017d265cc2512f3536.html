@@ -1,0 +1,74 @@
+<ion-view title="Review Fare &amp; Purchase" id="page4">
+    <ion-content class="has-header" style='padding:20px;'>
+        <div class='row'>
+            <div class='col-10'>
+                <i class='ion-plane rotate-270' style='font-size:20px;color:#d9d9d9;'></i>
+            </div>
+            <div class='col-90'>
+                <h4>{{flightDetails.origin}} to {{flightDetails.destination}}</h4>
+                <p>{{tripDetails.departureDate | date:'EEE, MMM d'}} <span ng-if="tripType['type'] == 'whatever'">+/- 1 day</span></p>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-10'>
+                <i class='ion-plane rotate-90' style='font-size:20px;color:#d9d9d9;'></i>
+            </div>
+            <div class='col-90'>
+                <h4>{{flightDetails.destination}} to {{flightDetails.origin}}</h4>
+                <p>{{tripDetails.returnDate | date:'EEE, MMM d'}} <span ng-if="tripType['type'] == 'whatever'">+/- 1 day</span></p>
+            </div>
+        </div>
+        <hr>
+        <div class='row'>
+            <div class='col-10'>
+                <i class='ion-person' style='font-size:20px;color:#d9d9d9;'></i>
+            </div>
+            <div class='col-90'>
+                <p><ng-pluralize count="savedTravellers.length" when="{'1': '1 traveler','other':'{} travelers'}"></ng-pluralize></p>
+            </div>    
+        </div>
+        <div class='row' ng-repeat="traveller in savedTravellers">
+            <div class='col-10'></div>
+            <div class='col-90'>
+                <div class='row'>
+                    <div class='col-20'>
+                        <div class="traveller-image-container" style='height:30px;width:30px;'>
+                        <img class="traveller-image" src="/assets/BunnyHalfSmile-1d732ffab520051bd80816b39a1c1f6ef5029d78e67c6303343799a22cf99656.png " height="50" width="50" style='top:-6px;left:-10px;'>
+                    </div>
+                    </div>
+                    <div class='col-80'>
+                        <p style='margin-bottom:0px;'><strong>{{traveller.firstName}} {{traveller.lastName}}</strong></p>
+                        <p>{{traveller.gender}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class='row'>
+            <div class='col-10'>
+                <i class='ion-card' style='font-size:20px;color:#d9d9d9;'></i>
+            </div>
+            <div class='col-90'>
+                <h4>{{totalCost | currency:"$":0}}</h4>
+                <p>on {{card}}</p>
+            </div>
+        </div>
+    </ion-content>
+    <button id="reviewFarePurchase-button5" ng-click="confirmation()" style="border-radius:0px 0px 0px 0px;" class="button button-positive button-block fixed-to-bottom">Pay Securely Now</button>
+
+    <script id="confirmation.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-content>
+                <div class='confirmation-container'>
+                    <div class='confirmation-content'>
+                        <h2>Pack your bags!</h2>
+                        <h4>A confirmation email will be sent shortly.</h4>
+                        <br>
+                        <i class='icon ion-checkmark-circled'></i>
+                    </div>
+                </div>
+            </ion-content>
+          </ion-modal-view>
+    </script>
+</ion-view>
+
